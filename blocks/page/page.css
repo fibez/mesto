@@ -1,0 +1,11 @@
+.page {
+  box-sizing: border-box;
+  background-color: #000000;
+  max-width: 1280px;
+  color: #fff;
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
