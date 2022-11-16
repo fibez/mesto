@@ -1,0 +1,6 @@
+.content {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: repeat(2, max-content);
+  row-gap: 51px;
+}
