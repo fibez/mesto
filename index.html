@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="stylesheet" href="/pages/index.css" />
     <title>Mesto</title>
   </head>
   <body class="page">
     <header class="header page__header">
-      <img class="header__logo" src="./images/logo.svg" alt="Логотип портала" />
+      <img class="header__logo" src="/images/logo.svg" alt="Логотип портала" />
     </header>
     <main class="content">
       <section class="profile content__profile">
         <div class="profile__info-container">
           <img
             class="profile__avatar"
-            src="./images/profile-avatar.png"
+            src="/images/profile-avatar.png"
             alt="Аватар профиля"
           />
           <p class="profile__description">Исследователь океана</p>
@@ -74,5 +74,16 @@
     <footer class="footer page__footer">
       <p class="footer__copyright">&copy;&nbsp;2020 Mesto Russia</p>
     </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close-button"></button>
+        <p class="popup__description">Редактировать профиль</p>
+        <form class="popup__form">
+          <input class="popup__input" placeholder="Как вас зовут?" />
+          <input class="popup__input" placeholder="Кто вы?" />
+          <button class="popup__save-button">Сохранить</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
