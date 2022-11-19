@@ -26,10 +26,12 @@ const closePopup = function (event) {
 };
 
 const submitProfileChanges = function (event) {
-  profileName.textContent = popupNameInputElement.value;
-  profileProfession.textContent = popupProfessionInputElement.value;
+  if (popupNameInputElement.value !== "" && popupProfessionInputElement.value !== "") {
+    profileName.textContent = popupNameInputElement.value;
+    profileProfession.textContent = popupProfessionInputElement.value;
+    closePopup(event);
+  }
   event.preventDefault();
-  closePopup(event);
 };
 //
 //

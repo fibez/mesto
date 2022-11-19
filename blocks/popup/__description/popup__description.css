@@ -8,3 +8,11 @@
   letter-spacing: 0em;
   text-align: left;
 }
+
+@media screen and (max-width: 545px) {
+  .popup__description {
+    margin: 25px 22px 0;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
