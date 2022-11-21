@@ -3,7 +3,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-self: flex-start;
   background-color: #fff;
   border-radius: 10px;
   align-self: center;
