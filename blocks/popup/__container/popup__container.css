@@ -1,16 +1,10 @@
 .popup__container {
   box-sizing: border-box;
-  top: 195px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-self: flex-start;
   background-color: #fff;
   border-radius: 10px;
-}
-
-@media screen and (max-width: 545px) {
-  .popup__container {
-    top: 123px;
-  }
+  align-self: center;
 }

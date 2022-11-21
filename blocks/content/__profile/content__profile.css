@@ -1,24 +1,5 @@
 .content__profile {
   box-sizing: border-box;
-  margin: 0 200px 0;
-}
-
-@media screen and (max-width: 1152px) {
-  .content__profile {
-    margin-left: 100px;
-    margin-right: 100px;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .content__profile {
-    justify-self: center;
-  }
-}
-
-@media screen and (max-width: 545px) {
-  .content__profile {
-    margin-left: auto;
-    margin-right: auto;
-  }
+  margin: 0 auto 0;
+  max-width: 880px;
 }

@@ -1,4 +1,6 @@
 .elements__place-name {
+  margin: 22px 0 28px;
+  padding: 0;
   max-width: 200px;
   white-space: nowrap;
   overflow: hidden;
