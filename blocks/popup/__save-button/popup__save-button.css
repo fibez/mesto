@@ -10,10 +10,10 @@
   letter-spacing: 0em;
   text-align: center;
   border: none;
+  cursor: pointer;
 }
 .popup__save-button:hover {
   opacity: 0.8;
-  cursor: pointer;
 }
 
 @media screen and (max-width: 545px) {

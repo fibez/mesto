@@ -72,11 +72,21 @@
     </footer>
     <div class="popup">
       <div class="popup__container">
-        <button class="popup__close-button"></button>
+        <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
         <p class="popup__description">Редактировать профиль</p>
-        <form class="popup__form">
-          <input class="popup__input popup__input_type_name" placeholder="Как вас зовут?" value="" />
-          <input class="popup__input popup__input_type_profession" placeholder="Кто вы?" value="" />
+        <form class="popup__form" name="profile-form">
+          <input
+            class="popup__input popup__input_type_name"
+            placeholder="Как вас зовут?"
+            name="profile-input-name"
+            value=""
+          />
+          <input
+            class="popup__input popup__input_type_profession"
+            placeholder="Кто вы?"
+            name="profile-input-profession"
+            value=""
+          />
           <button class="popup__save-button" type="submit">Сохранить</button>
         </form>
       </div>

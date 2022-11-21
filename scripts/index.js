@@ -15,14 +15,14 @@ const popupFormElement = popupElement.querySelector('.popup__form');
 //
 //
 const openPopup = function () {
-  popupElement.classList.add('popup__opened');
+  popupElement.classList.add('popup_opened');
   popupNameInputElement.value = profileName.textContent;
   popupProfessionInputElement.value = profileProfession.textContent;
 };
 
 const closePopup = function (event) {
   if (event.target === popupCloseButtonElement || event.target === event.currentTarget) {
-    popupElement.classList.remove('popup__opened');
+    popupElement.classList.remove('popup_opened');
   }
 };
 
