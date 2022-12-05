@@ -63,8 +63,6 @@ function addStockCards(item) {
 // ** Все возможные действия с карточками: открыть, удалить, лайкнуть **
 const cardsAction = function (e) {
   if (e.target.classList.contains('elements__image')) {
-    popupGaleryElement.style.transition = 'visibility 0.3s linear, opacity 0.3s linear';
-
     popupGaleryElement.classList.add('popup_opened');
 
     popupGaleryImgElement.setAttribute('src', e.target.getAttribute('src'));
@@ -80,15 +78,11 @@ const cardsAction = function (e) {
 // ** Открываем попапы **
 const openPopup = function (event) {
   if (event.target.classList.value === 'profile__edit-button') {
-    popupEditProfileElement.style.transition = 'visibility 0.3s linear, opacity 0.3s linear';
-
     popupEditProfileElement.classList.add('popup_opened');
 
     popupNameInputElement.value = profileName.textContent;
     popupProfessionInputElement.value = profileProfession.textContent;
   } else if (event.target.classList.value === 'profile__add-button') {
-    popupAddCardsElement.style.transition = 'visibility 0.3s linear, opacity 0.3s linear';
-
     popupAddCardsElement.classList.add('popup_opened');
   }
 };
