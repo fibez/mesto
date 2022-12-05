@@ -2,7 +2,8 @@
   width: 22px;
   height: 19px;
   background-color: rgba(0, 0, 0, 0);
-  background-image: url("../../../images/like.svg");
+  background-image: url('../../../images/like.svg');
+  /* background-image: url('../../../images/like-active.svg'); */
   background-repeat: no-repeat;
   background-position: center;
   align-self: center;
@@ -12,8 +13,4 @@
 
 .elements__like:hover {
   opacity: 0.5;
-}
-
-.elements__like:active {
-  background-image: url("../../../images/like-active.svg");
 }

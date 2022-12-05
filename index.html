@@ -13,17 +13,17 @@
     <main class="content">
       <section class="profile content__profile">
         <div class="profile__info-container">
-          <img class="profile__avatar" src="./images/profile-avatar.png" alt="Аватар профиля" />
-          <p class="profile__description">Исследователь океана</p>
+          <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Аватар профиля" />
+          <p class="profile__description">Исследовательница</p>
           <div class="profile__name-button-container">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name">Тося</h1>
             <button class="profile__edit-button" type="button" aria-label="Редактировать описание профиля"></button>
           </div>
         </div>
         <button class="profile__add-button" type="button" aria-label="Добавить фотографию"></button>
       </section>
       <section class="elements content__elements">
-        <div class="elements__card">
+        <!-- <div class="elements__card">
           <img class="elements__image" src="./images/karach.jpg" alt="Фотография церкви" />
           <div class="elements__wrapper">
             <h2 class="elements__place-name">Карачаевск</h2>
@@ -64,17 +64,17 @@
             <h2 class="elements__place-name">Карачаево-Черкесск</h2>
             <button class="elements__like" type="button" aria-label="Понравилось"></button>
           </div>
-        </div>
+        </div> -->
       </section>
     </main>
     <footer class="footer page__footer">
       <p class="footer__copyright">&copy;&nbsp;2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup__profile-edit">
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
         <p class="popup__description">Редактировать профиль</p>
-        <form class="popup__form" name="profile-form">
+        <form class="popup__form popup__form_type_profile-edit" name="profile-form">
           <input
             class="popup__input popup__input_type_name"
             placeholder="Как вас зовут?"
@@ -91,6 +91,44 @@
         </form>
       </div>
     </div>
+    <div class="popup popup__cards-add">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
+        <p class="popup__description">Новое место</p>
+        <form class="popup__form popup__form_type_add-card" name="add-cards-form">
+          <input
+            class="popup__input popup__input_type_place-name"
+            placeholder="Название"
+            name="cards-input-place-name"
+            value=""
+          />
+          <input
+            class="popup__input popup__input_type_img-link"
+            placeholder="Ссылка на картинку"
+            name="cards-input-img-link"
+            value=""
+          />
+          <button class="popup__save-button" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup__galery">
+      <div class="popup__container popup__galery-container">
+        <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
+        <img class="popup__image" src="#" alt="Фотография" />
+        <h2 class="popup__image-desription"></h2>
+      </div>
+    </div>
+    <template id="cards-template">
+      <div class="elements__card">
+        <img class="elements__image" src="" alt="Фотография" />
+        <div class="elements__wrapper">
+          <h2 class="elements__place-name"></h2>
+          <button class="elements__like" type="button" aria-label="Понравилось"></button>
+        </div>
+        <button class="elements__bucket" type="button" aria-label="Удалить"></button>
+      </div>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
