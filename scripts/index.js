@@ -47,8 +47,18 @@ const popupGaleryElement = document.querySelector('.popup__galery');
 const popupGaleryImgElement = popupGaleryElement.querySelector('.popup__image');
 const popupGaleryImgDescriptionElement = popupGaleryElement.querySelector('.popup__image-desription');
 
-// ** Рисуем карточки сразу после загрузки **
-addStockCards(initialCards);
+// ** Рендер based карточек **
+function addStockCards(item) {
+  for (let i = 0; i <= initialCards.length - 1; i++) {
+    const cardElement = cardTemplate.querySelector('.elements__card').cloneNode(true);
+
+    cardElement.querySelector('.elements__place-name').textContent = item[i].name;
+    cardElement.querySelector('.elements__image').setAttribute('alt', item[i].name);
+    cardElement.querySelector('.elements__image').setAttribute('src', item[i].link);
+
+    cardsContainer.prepend(cardElement);
+  }
+}
 
 // ** Все возможные действия с карточками: открыть, удалить, лайкнуть **
 const cardsAction = function (e) {
@@ -123,19 +133,6 @@ const submitCardsAddition = function (event) {
   }
 };
 
-// ** Рендер based карточек **
-function addStockCards(item) {
-  for (let i = 0; i <= initialCards.length - 1; i++) {
-    const cardElement = cardTemplate.querySelector('.elements__card').cloneNode(true);
-
-    cardElement.querySelector('.elements__place-name').textContent = item[i].name;
-    cardElement.querySelector('.elements__image').setAttribute('alt', item[i].name);
-    cardElement.querySelector('.elements__image').setAttribute('src', item[i].link);
-
-    cardsContainer.prepend(cardElement);
-  }
-}
-
 // ** Слушатели **
 editButtonElement.addEventListener('click', openPopup);
 addButtonElement.addEventListener('click', openPopup);
@@ -145,3 +142,6 @@ popupAddCardsElement.addEventListener('click', closePopup);
 popupFormAddCardsElement.addEventListener('submit', submitCardsAddition);
 cardsContainer.addEventListener('click', cardsAction);
 popupGaleryElement.addEventListener('click', closePopup);
+
+// ** Рисуем карточки сразу после загрузки **
+addStockCards(initialCards);
