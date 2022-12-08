@@ -87,6 +87,7 @@ function openFullSizeImage(e) {
   openPopup(popupGaleryElement);
 
   popupGaleryImgElement.setAttribute('src', e.target.getAttribute('src'));
+  popupGaleryImgElement.setAttribute('alt', e.target.getAttribute('alt'));
   popupGaleryImgDescriptionElement.textContent = e.target.getAttribute('alt');
 }
 
