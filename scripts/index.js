@@ -122,10 +122,26 @@ function submitCardsAddition(e) {
 // ** Откртие попапов
 function openPopup(element) {
   element.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEsc);
+}
+
+// ** Закрываем кнопкой Escape
+function closeByEsc(event) {
+  if (event.key === 'Escape') {
+    const popupList = Array.from(document.querySelectorAll('.popup'));
+    const targetedPopup = popupList.find(function (element) {
+      if (element.classList.contains('popup_opened')) {
+        return element;
+      }
+    });
+
+    closePopup(targetedPopup);
+    document.removeEventListener('keydown', closeByEsc);
+  }
 }
 
 // ** Решаем как закрыть попап **
-function chooseWhereToClose(event) {
+function selectWayToClose(event) {
   if (event.target === event.currentTarget) {
     closePopup(event.target);
   } else if (event.target.classList.contains('popup__close-button')) {
@@ -135,6 +151,28 @@ function chooseWhereToClose(event) {
 // ** Закрываем попап **
 function closePopup(target) {
   target.classList.remove('popup_opened');
+  if (target.classList.contains('popup_type_profile-edit')) {
+    resetValidation(target);
+  }
+}
+// ** Сбрасываем валидацию, если в попапе для изменения данных профиля была ошибка валидации и попап был закрыт. Нужно для того чтобы при следующем открытии не было ситуации, когда фактически поля валидны, но отображается сообщение об ошибке и невалидный инпут
+function resetValidation(target) {
+  const formElement = target.querySelector('.popup__form');
+  const errorElementList = Array.from(formElement.querySelectorAll('.popup__error'));
+  const inputElementList = Array.from(formElement.querySelectorAll('.popup__input'));
+
+  errorElementList.forEach(function (element) {
+    if (element.classList.contains('popup__error_visible')) {
+      element.classList.remove('popup__error_visible');
+      element.textContent = '';
+    }
+  });
+
+  inputElementList.forEach(function (element) {
+    if (element.classList.contains('popup__input_invalid')) {
+      element.classList.remove('popup__input_invalid');
+    }
+  });
 }
 
 function sendValuesFromProfile() {
@@ -166,9 +204,9 @@ addButtonElement.addEventListener('click', function () {
 
 popupFormEditProfileElement.addEventListener('submit', submitProfileChanges);
 popupFormAddCardElement.addEventListener('submit', submitCardsAddition);
-popupEditProfileElement.addEventListener('mousedown', chooseWhereToClose);
-popupAddCardsElement.addEventListener('mousedown', chooseWhereToClose);
-popupGaleryElement.addEventListener('mousedown', chooseWhereToClose);
+popupEditProfileElement.addEventListener('mousedown', selectWayToClose);
+popupAddCardsElement.addEventListener('mousedown', selectWayToClose);
+popupGaleryElement.addEventListener('mousedown', selectWayToClose);
 
 // ** Рендер исходных карточек **
 renderNewCard(initialCards);
