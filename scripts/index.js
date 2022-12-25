@@ -1,5 +1,7 @@
 'use strict';
 
+import { resetValidation, hasInvalidInput, validationSettings, toggleButtonState } from './validation.js';
+
 // ** Коллекционируем тонну переменных **
 const initialCards = [
   {
@@ -65,7 +67,7 @@ function createCard(title, src) {
   bucketButtonElement.addEventListener('click', removeCard);
 
   const likeButtonElement = cardElement.querySelector('.elements__like');
-  likeButtonElement.addEventListener('click', setLike);
+  likeButtonElement.addEventListener('click', handleLikeClick);
 
   const cardImageElement = cardElement.querySelector('.elements__image');
   cardImageElement.addEventListener('click', openFullSizeImage);
@@ -79,7 +81,7 @@ function removeCard(e) {
   closestParentCard.remove();
 }
 
-function setLike(e) {
+function handleLikeClick(e) {
   e.target.classList.toggle('elements__like_active');
 }
 
@@ -101,7 +103,9 @@ function renderNewCard(card) {
 function submitCardsAddition(e) {
   e.preventDefault();
 
-  if (popupPlaceNameInputElement.value !== '' && popupImgLinkInputElement.value !== '') {
+  const inputList = Array.from(popupFormAddCardElement.querySelectorAll('.popup__list'));
+
+  if (!hasInvalidInput(inputList)) {
     const inputName = popupPlaceNameInputElement.value;
     const inputLink = popupImgLinkInputElement.value;
 
@@ -119,14 +123,22 @@ function submitCardsAddition(e) {
   }
 }
 
-// ** Откртие попапов
-function openPopup(element) {
-  element.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEsc);
+// ** Выставляем корректное состояние кнопки для попапа добавления карточки после добавления нового сабмита
+function setDefaultButtonState(popup) {
+  const inputList = Array.from(popup.querySelectorAll('.popup__input'));
+  const buttonElement = popup.querySelector('.popup__save-button');
+
+  toggleButtonState(validationSettings, inputList, buttonElement);
+  openPopup(popup);
 }
 
-// ** Закрываем кнопкой Escape
-function closeByEsc(event) {
+// ** Открытие попапов
+function openPopup(element) {
+  element.classList.add('popup_opened');
+  document.addEventListener('keydown', selectPopupToCloseByEsc);
+}
+
+function selectPopupToCloseByEsc(event) {
   if (event.key === 'Escape') {
     const popupList = Array.from(document.querySelectorAll('.popup'));
     const targetedPopup = popupList.find(function (element) {
@@ -135,8 +147,11 @@ function closeByEsc(event) {
       }
     });
 
-    closePopup(targetedPopup);
-    document.removeEventListener('keydown', closeByEsc);
+    if (targetedPopup.classList.contains('popup_type_profile-edit')) {
+      checkProfileEditInputsValidity(targetedPopup);
+    } else {
+      closePopup(targetedPopup);
+    }
   }
 }
 
@@ -148,33 +163,32 @@ function selectWayToClose(event) {
     closePopup(event.currentTarget);
   }
 }
+
 // ** Закрываем попап **
 function closePopup(target) {
   target.classList.remove('popup_opened');
-  if (target.classList.contains('popup_type_profile-edit')) {
-    resetValidation(target);
+  document.removeEventListener('keydown', selectPopupToCloseByEsc);
+}
+
+// ** Отдельный флоу закрытия для попапа изменения профиля
+function selectWayToClosePopupFormEdit(event, popup) {
+  if (event.target === event.currentTarget || event.target.classList.contains('popup__close-button')) {
+    checkProfileEditInputsValidity(popup);
   }
 }
-// ** Сбрасываем валидацию, если в попапе для изменения данных профиля была ошибка валидации и попап был закрыт. Нужно для того чтобы при следующем открытии не было ситуации, когда фактически поля валидны, но отображается сообщение об ошибке и невалидный инпут
-function resetValidation(target) {
-  const formElement = target.querySelector('.popup__form');
-  const errorElementList = Array.from(formElement.querySelectorAll('.popup__error'));
-  const inputElementList = Array.from(formElement.querySelectorAll('.popup__input'));
 
-  errorElementList.forEach(function (element) {
-    if (element.classList.contains('popup__error_visible')) {
-      element.classList.remove('popup__error_visible');
-      element.textContent = '';
-    }
-  });
+function checkProfileEditInputsValidity(popup) {
+  const inputList = Array.from(popup.querySelectorAll('.popup__input'));
 
-  inputElementList.forEach(function (element) {
-    if (element.classList.contains('popup__input_invalid')) {
-      element.classList.remove('popup__input_invalid');
-    }
-  });
+  if (hasInvalidInput(inputList)) {
+    resetValidation(validationSettings, popup);
+    closePopup(popup);
+  } else {
+    closePopup(popup);
+  }
 }
 
+// ** Подтягиваем данные из профиля в инпуты
 function sendValuesFromProfile() {
   popupNameInputElement.value = profileNameElement.textContent;
   popupProfessionInputElement.value = profileProfessionElement.textContent;
@@ -183,8 +197,9 @@ function sendValuesFromProfile() {
 // ** Закрываем и сохраняем изменения из формы профиля **
 function submitProfileChanges(event) {
   event.preventDefault();
+  const inputList = Array.from(popupFormEditProfileElement.querySelectorAll('.popup__form'));
 
-  if (popupNameInputElement.value !== '' && popupProfessionInputElement.value !== '') {
+  if (!hasInvalidInput(inputList)) {
     profileNameElement.textContent = popupNameInputElement.value;
     profileProfessionElement.textContent = popupProfessionInputElement.value;
 
@@ -199,14 +214,23 @@ editButtonElement.addEventListener('click', function () {
 });
 
 addButtonElement.addEventListener('click', function () {
-  openPopup(popupAddCardsElement);
+  setDefaultButtonState(popupAddCardsElement);
 });
 
 popupFormEditProfileElement.addEventListener('submit', submitProfileChanges);
 popupFormAddCardElement.addEventListener('submit', submitCardsAddition);
-popupEditProfileElement.addEventListener('mousedown', selectWayToClose);
 popupAddCardsElement.addEventListener('mousedown', selectWayToClose);
 popupGaleryElement.addEventListener('mousedown', selectWayToClose);
 
 // ** Рендер исходных карточек **
 renderNewCard(initialCards);
+
+popupEditProfileElement.addEventListener('mousedown', function (event) {
+  selectWayToClosePopupFormEdit(event, popupEditProfileElement);
+});
+// Создать отдельный флоу для закрытия попапа изменения данных профиля:
+// * проверям путь закрытия
+// ** кнопка эскейп, крестик, оверлей, сабмит
+// ** проверить валидность
+// ** если поля не валидны и нажаты эскейп, крестик или оверлей, то: сбросить валидацию -> установить кнопку в стандартное положение -> закрыть попап
+// ** если поля валидны, и нажаты эскейп, крестик или оверлей, то: закрыть попап

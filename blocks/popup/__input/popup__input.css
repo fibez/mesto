@@ -11,17 +11,3 @@
   letter-spacing: 0em;
   text-align: left;
 }
-
-.popup__input:first-of-type {
-  margin-bottom: 31px;
-}
-
-.popup__input:last-of-type {
-  margin-bottom: 50px;
-}
-
-@media screen and (max-width: 545px) {
-  .popup__input:last-of-type {
-    margin-bottom: 45px;
-  }
-}
