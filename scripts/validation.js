@@ -12,6 +12,7 @@ const validationSettings = {
   errorClass: '.popup__error',
 };
 
+// ** Функция запуска виладации
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
 
@@ -20,6 +21,7 @@ function enableValidation(config) {
   });
 }
 
+// ** Каждому инпуту устанавливаем слушатели
 function setEventListeners(config, formElement) {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const submitButton = formElement.querySelector(config.submitButtonSelector);
@@ -32,6 +34,7 @@ function setEventListeners(config, formElement) {
   });
 }
 
+// ** Проверяем валидность инпута и вызываем функции отображения и скрытия ошибок
 function checkInputValidity(config, formElement, inputELement) {
   if (!inputELement.validity.valid) {
     showInputError(config, formElement, inputELement, inputELement.validationMessage);
@@ -40,6 +43,7 @@ function checkInputValidity(config, formElement, inputELement) {
   }
 }
 
+// ** Показываем ошибку
 function showInputError(config, formElement, inputELement, validationMessage) {
   const errorElement = formElement.querySelector(`#${inputELement.id}-error`);
 
@@ -49,6 +53,7 @@ function showInputError(config, formElement, inputELement, validationMessage) {
   inputELement.classList.add(config.inputErrorClass);
 }
 
+// ** Скрываем ошибку
 function hideInputError(config, formElement, inputELement) {
   const errorElement = formElement.querySelector(`#${inputELement.id}-error`);
 
@@ -58,6 +63,7 @@ function hideInputError(config, formElement, inputELement) {
   inputELement.classList.remove(config.inputErrorClass);
 }
 
+// ** В зависимости от валидности инпута устанавливаем необходимое состояние для кнопки сбамита
 function toggleButtonState(config, inputList, submitButton) {
   if (hasInvalidInput(inputList)) {
     submitButton.classList.add(config.inactiveButtonClass);
@@ -68,12 +74,14 @@ function toggleButtonState(config, inputList, submitButton) {
   }
 }
 
+// ** Проверка на наличие невалидного инпута
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 }
 
+// ** Сброс валидации для попапа редактирования профиля при закрытии и повторном открытии
 function resetValidation(config, target) {
   const buttonElement = target.querySelector(config.submitButtonSelector);
   const errorElementList = Array.from(target.querySelectorAll(config.errorClass));
@@ -96,6 +104,7 @@ function resetValidation(config, target) {
   buttonElement.removeAttribute('disabled');
 }
 
+// ** Запсукаем все это
 enableValidation(validationSettings);
 
 export { resetValidation, hasInvalidInput, validationSettings, toggleButtonState };
