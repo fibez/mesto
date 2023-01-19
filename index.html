@@ -42,9 +42,7 @@
             minlength="2"
             maxlength="40"
           />
-          <div class="popup__error-container">
-            <span class="popup__error" id="profile-name-error"></span>
-          </div>
+          <span class="popup__error" id="profile-name-error"></span>
           <input
             class="popup__input popup__input_type_profession"
             id="profile-profession"
@@ -55,9 +53,7 @@
             minlength="2"
             maxlength="200"
           />
-          <div class="popup__error-container">
-            <span class="popup__error" id="profile-profession-error"></span>
-          </div>
+          <span class="popup__error" id="profile-profession-error"></span>
           <button class="popup__save-button" type="submit">Сохранить</button>
         </form>
       </div>
@@ -66,7 +62,7 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
         <p class="popup__description">Новое место</p>
-        <form class="popup__form popup__form_type_add-card" name="add-cards-form">
+        <form class="popup__form popup__form_type_add-card" name="add-cards-form" novalidate>
           <input
             class="popup__input popup__input_type_place-name"
             id="place-name"
@@ -77,9 +73,7 @@
             minlength="2"
             maxlength="30"
           />
-          <div class="popup__error-container">
-            <span class="popup__error popup__error_type_add-card" id="place-name-error"></span>
-          </div>
+          <span class="popup__error popup__error_type_add-card" id="place-name-error"></span>
           <input
             class="popup__input popup__input_type_img-link"
             id="img-link"
@@ -89,10 +83,8 @@
             required
             type="url"
           />
-          <div class="popup__error-container">
-            <span class="popup__error popup__error_type_img-link" id="img-link-error"></span>
-          </div>
-          <button class="popup__save-button popup__save-button_inactive" type="submit">Создать</button>
+          <span class="popup__error popup__error_type_img-link" id="img-link-error"></span>
+          <button class="popup__save-button popup__save-button_inactive" type="submit" disabled>Создать</button>
         </form>
       </div>
     </div>
