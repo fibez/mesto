@@ -20,7 +20,7 @@ class FormValidator {
   // Сброс валидации
   resetValidation() {
     this._inputList.forEach((element) => {
-      this._checkInputValidity(element);
+      this._hideInputError(element);
     });
     this._toggleButtonState();
   }

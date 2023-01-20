@@ -42,7 +42,7 @@ class Card {
     this._element.querySelector(this._cardDeleteButtonSelector).addEventListener('click', () => {
       this._removeCard(event);
     });
-    this._element.querySelector(this._cardLikeButtonSelector).addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
       this._handleLikeClick(event);
     });
     this._element.querySelector(this._cardImageSelector).addEventListener('click', () => {
@@ -52,6 +52,7 @@ class Card {
 
   _generateCard() {
     this._element = this._getTemplateElement();
+    this._likeButton = this._element.querySelector(this._cardLikeButtonSelector);
 
     this._cardImageElement = this._element.querySelector(this._cardImageSelector);
     this._cardDescriptionElement = this._element.querySelector(this._cardDescriptionSelector);
@@ -70,8 +71,8 @@ class Card {
     this._element = null;
   }
 
-  _handleLikeClick(event) {
-    event.target.classList.toggle(this._cardActiveLikeButtonSelector);
+  _handleLikeClick() {
+    this._likeButton.classList.toggle(this._cardActiveLikeButtonSelector);
   }
 
   _openFullSizeImage(event) {
