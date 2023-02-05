@@ -4,7 +4,7 @@ import { initialCards } from './defaultcards.js';
 import { validationSettings } from './validationsettings.js';
 import { Card } from './components/Card.js';
 import { Section } from './components/Section.js';
-import { FormValidator } from './FormValidator.js';
+import { FormValidator } from './components/FormValidator.js';
 
 // ** Попапы **
 const popupEditProfileElement = document.querySelector('.popup_type_profile-edit');
