@@ -2,7 +2,8 @@
 
 import { initialCards } from './defaultcards.js';
 import { validationSettings } from './validationsettings.js';
-import { Card } from './Card.js';
+import { Card } from './components/Card.js';
+import { Section } from './components/Section.js';
 import { FormValidator } from './FormValidator.js';
 
 // ** Попапы **
@@ -38,12 +39,11 @@ function submitCardsAddition(e) {
     link: popupImgLinkInputElement.value,
   };
 
-  prependNewCard(createCard(userData));
+  newSeoulCards.addItem(createCard(userData));
 
   closePopup(popupAddCardsElement);
   e.target.reset();
 }
-
 // ** Создаем и возвращаем новую карточку
 function createCard(data) {
   const userCard = new Card(
@@ -56,10 +56,6 @@ function createCard(data) {
   ).getNewCard();
 
   return userCard;
-}
-
-function prependNewCard(card) {
-  cardsContainerELement.prepend(card);
 }
 
 // ** Открытие попапов
@@ -125,15 +121,30 @@ popupEditProfileElement.addEventListener('mousedown', selectWayToClose);
 popupAddCardsElement.addEventListener('mousedown', selectWayToClose);
 popupGaleryElement.addEventListener('mousedown', selectWayToClose);
 
-// ** Рендер исходных карточек **
-function renderDefaultCards() {
-  initialCards.forEach((item) => {
-    prependNewCard(createCard(item));
-  });
-}
-
 // ** Запуск валидации
 profileEditFormValidation.enableValidation();
 cardAddFormValidation.enableValidation();
-// ** Реальный рендер исходных карточек
-renderDefaultCards();
+
+//
+//
+//
+//    ███╗   ██╗███████╗██╗    ██╗         ██████╗ ██████╗ ██████╗ ███████╗
+//    ████╗  ██║██╔════╝██║    ██║        ██╔════╝██╔═══██╗██╔══██╗██╔════╝
+//    ██╔██╗ ██║█████╗  ██║ █╗ ██║        ██║     ██║   ██║██║  ██║█████╗
+//    ██║╚██╗██║██╔══╝  ██║███╗██║        ██║     ██║   ██║██║  ██║██╔══╝
+//    ██║ ╚████║███████╗╚███╔███╔╝        ╚██████╗╚██████╔╝██████╔╝███████╗
+//    ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝          ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝
+//
+//
+const newSeoulCards = new Section(
+  {
+    data: initialCards,
+    renderer: (item) => {
+      const seoulCardElement = createCard(item);
+      newSeoulCards.addItem(seoulCardElement);
+    },
+  },
+  '.elements'
+);
+
+newSeoulCards.renderElement(initialCards);
