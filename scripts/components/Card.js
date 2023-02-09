@@ -1,11 +1,11 @@
 'use strict';
 
 class Card {
-  constructor(data, templateSelector, openPopupFunction) {
+  constructor(data, templateSelector, handleCardClick) {
     this._templateSelector = templateSelector;
     this._name = data.name;
     this._link = data.link;
-    this._openPopupFunction = openPopupFunction;
+    this._handleCardClick = handleCardClick;
 
     this._cardsContainerSelector = '.elements';
     this._cardSelector = '.elements__card';
@@ -38,6 +38,15 @@ class Card {
     return cardElement;
   }
 
+  _getImageData() {
+    const imageData = {
+      name: this._cardImageElement.getAttribute('alt'),
+      link: this._cardImageElement.getAttribute('src'),
+    };
+
+    return imageData;
+  }
+
   _handleEventListener() {
     this._element.querySelector(this._cardDeleteButtonSelector).addEventListener('click', () => {
       this._removeCard(event);
@@ -46,7 +55,7 @@ class Card {
       this._handleLikeClick(event);
     });
     this._element.querySelector(this._cardImageSelector).addEventListener('click', () => {
-      this._openFullSizeImage(event, this._element);
+      this._handleCardClick(this._getImageData());
     });
   }
 
@@ -73,14 +82,6 @@ class Card {
 
   _handleLikeClick() {
     this._likeButton.classList.toggle(this._cardActiveLikeButtonSelector);
-  }
-
-  _openFullSizeImage(event) {
-    this._openPopupFunction(this._popupGaleryElement);
-
-    this._popupGaleryImageElement.setAttribute('src', event.target.getAttribute('src'));
-    this._popupGaleryImageElement.setAttribute('alt', event.target.getAttribute('alt'));
-    this._popupGaleryImageDescriptionElement.textContent = event.target.getAttribute('alt');
   }
 }
 
