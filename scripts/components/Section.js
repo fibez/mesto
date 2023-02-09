@@ -1,6 +1,5 @@
 class Section {
   constructor({ renderer }, selector) {
-    // this._data = data;
     this._renderer = renderer;
     this._container = document.querySelector(selector);
   }
