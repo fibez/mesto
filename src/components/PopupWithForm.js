@@ -1,8 +1,6 @@
 'use strict';
 
 import { Popup } from './Popup.js';
-import { FormValidator } from './FormValidator.js';
-import { validationSettings } from './validationsettings.js';
 
 class PopupWithForm extends Popup {
   constructor(popupSelector, handleSubmitForm, handleResetValidation) {
@@ -11,7 +9,6 @@ class PopupWithForm extends Popup {
     this._popupInputList = this._popup.querySelectorAll('.popup__input');
     this._popupForm = this._popup.querySelector('.popup__form');
     this._handleResetValidation = handleResetValidation;
-    this._validation = new FormValidator(validationSettings, this._popupForm);
   }
 
   open() {
@@ -31,7 +28,6 @@ class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
 
-    this._validation.enableValidation();
     this._popupForm.addEventListener('submit', () => {
       event.preventDefault();
       this._handleSubmitForm(this._getInputValues());
@@ -41,8 +37,8 @@ class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._validation.resetValidation();
     this._popupForm.reset();
+    this._handleResetValidation(this._popupForm);
   }
 }
 
