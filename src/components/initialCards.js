@@ -1,27 +1,27 @@
 const initialCards = [
   {
-    name: '3.15.20 / Childish Gambino',
-    link: 'https://t2.genius.com/unsafe/300x300/https%3A%2F%2Fimages.genius.com%2F0fd1eaa39bfa4d3a449659fde8c2f0bd.1000x1000x1.jpg',
+    name: 'панелька',
+    link: 'https://images.unsplash.com/photo-1516144935500-ecacf0e53552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1784&q=80',
   },
   {
-    name: 'Чтобы в этом убедиться',
-    link: 'https://preview.redd.it/7jsfu538c9ha1.png?width=640&crop=smart&auto=webp&v=enabled&s=94e10e414b8c234bdeb6e32605dfca528bdef3c7',
+    name: 'панелька',
+    link: 'https://images.unsplash.com/photo-1624944944049-f81760cc4015?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1094&q=80',
   },
   {
-    name: 'Гинтама очень смешное аниме',
-    link: 'https://preview.redd.it/iar8ixe8c9ha1.png?width=640&crop=smart&auto=webp&v=enabled&s=d8973b5b45465725b35b3388c9f967923c8855cf',
+    name: 'панелька',
+    link: 'https://images.unsplash.com/photo-1621880951883-1bafcdbefdf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
   },
   {
-    name: 'Melt My Eyez, See Your Future / Denzel Curry',
-    link: 'https://t2.genius.com/unsafe/300x0/https%3A%2F%2Fimages.genius.com%2F3f07f0f2ee3a75dbc3a549d7149ae04f.1000x1000x1.png',
+    name: 'панелька',
+    link: 'https://images.unsplash.com/photo-1617608918115-8b7eae4bf524?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
   },
   {
-    name: 'Mr. Morale & The Big Steppers / Kendrick Lamar',
-    link: 'https://t2.genius.com/unsafe/300x0/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png',
+    name: 'панелька',
+    link: 'https://images.unsplash.com/photo-1620249808130-15828048267a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
   },
   {
-    name: 'Я и моя картошка',
-    link: 'https://i.redd.it/733jqgtvi9ha1.jpg',
+    name: 'панелька',
+    link: 'https://images.unsplash.com/photo-1624721405417-7aef9ff106fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
   },
 ];
 

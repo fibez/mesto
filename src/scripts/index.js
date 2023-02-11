@@ -1,5 +1,7 @@
 'use strict';
 
+import css from '../pages/index.css';
+
 import { initialCards } from '../components/initialCards.js';
 import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
