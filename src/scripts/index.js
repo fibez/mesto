@@ -33,8 +33,8 @@ validationAddCard.enableValidation();
 
 function submitCardAddition(inputValues) {
   const userData = {
-    name: inputValues['cards-input-place-name'],
-    link: inputValues['cards-input-img-link'],
+    name: inputValues['place-name'],
+    link: inputValues['img-link'],
   };
 
   cardElement.addItem(createCard(userData));
