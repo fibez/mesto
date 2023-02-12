@@ -2,14 +2,13 @@
 
 import css from '../pages/index.css';
 
-import { initialCards } from '../components/initialCards.js';
+import { initialCards, validationSettings } from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { FormValidator } from '../components/FormValidator.js';
-import { validationSettings } from '../components/validationsettings.js';
 //
 //
 //
@@ -52,13 +51,12 @@ function createCard({ name, link }) {
   return userCard;
 }
 
-function handleResetFormValidation(popupForm) {
-  new FormValidator(validationSettings, popupForm).resetValidation();
+function handleResetEditProfileValidation() {
+  validationEditProfile.resetValidation();
 }
 
-function sendValuesFromProfile({ name, description }) {
-  popupNameInputElement.value = name;
-  popupProfessionInputElement.value = description;
+function handleResetAddCardValidation() {
+  validationAddCard.resetValidation();
 }
 
 function submitProfileChanges(inputValues) {
@@ -86,10 +84,14 @@ const cardElement = new Section(
 cardElement.renderElement(initialCards);
 
 // Попапы с формой
-const popupAddCard = new PopupWithForm('.popup_type_cards-add', submitCardAddition, handleResetFormValidation);
+const popupAddCard = new PopupWithForm('.popup_type_cards-add', submitCardAddition, handleResetAddCardValidation);
 popupAddCard.setEventListeners();
 
-const popupEditProfile = new PopupWithForm('.popup_type_profile-edit', submitProfileChanges, handleResetFormValidation);
+const popupEditProfile = new PopupWithForm(
+  '.popup_type_profile-edit',
+  submitProfileChanges,
+  handleResetEditProfileValidation
+);
 popupEditProfile.setEventListeners();
 // Попап без формы, но с красивой кратинкой
 const popupGalery = new PopupWithImage('.popup_type_galery');
@@ -104,6 +106,7 @@ buttonAddElement.addEventListener('click', function () {
 });
 
 buttonEditElement.addEventListener('click', () => {
-  sendValuesFromProfile(userInfo.getUserInfo());
+  popupEditProfile.setInputValues(userInfo.getUserInfo());
+  // sendValuesFromProfile(userInfo.getUserInfo());
   popupEditProfile.open();
 });

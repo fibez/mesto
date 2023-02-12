@@ -11,18 +11,20 @@ class PopupWithForm extends Popup {
     this._handleResetValidation = handleResetValidation;
   }
 
-  open() {
-    super.open();
-  }
-
   _getInputValues() {
     const inputValues = {};
 
     this._popupInputList.forEach((element) => {
-      inputValues[element.name] = element.value;
+      inputValues[element.id] = element.value;
     });
 
     return inputValues;
+  }
+
+  setInputValues(data) {
+    this._popupInputList.forEach((input) => {
+      input.value = data[input.id];
+    });
   }
 
   setEventListeners() {

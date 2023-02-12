@@ -8,16 +8,16 @@ class UserInfo {
 
   getUserInfo() {
     const userInfo = {
-      name: this._profileNameElement.textContent,
-      description: this._profileDescriptionElement.textContent,
+      'profile-name': this._profileNameElement.textContent,
+      'profile-profession': this._profileDescriptionElement.textContent,
     };
 
     return userInfo;
   }
 
   setUserInfo(inputValues) {
-    this._profileNameElement.textContent = inputValues['profile-input-name'];
-    this._profileDescriptionElement.textContent = inputValues['profile-input-profession'];
+    this._profileNameElement.textContent = inputValues['profile-name'];
+    this._profileDescriptionElement.textContent = inputValues['profile-profession'];
   }
 }
 

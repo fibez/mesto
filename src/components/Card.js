@@ -7,7 +7,6 @@ class Card {
     this._link = data.link;
     this._handleCardClick = handleCardClick;
 
-    this._cardsContainerSelector = '.elements';
     this._cardSelector = '.elements__card';
     this._cardDeleteButtonSelector = '.elements__bucket';
     this._cardLikeButtonSelector = '.elements__like';
