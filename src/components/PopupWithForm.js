@@ -9,6 +9,7 @@ class PopupWithForm extends Popup {
     this._popupInputList = this._popup.querySelectorAll('.popup__input');
     this._popupForm = this._popup.querySelector('.popup__form');
     this._handleResetValidation = handleResetValidation;
+    this._saveButtonElement = this._popup.querySelector('.popup__save-button');
   }
 
   _getInputValues() {
@@ -27,13 +28,20 @@ class PopupWithForm extends Popup {
     });
   }
 
+  open() {
+    super.open();
+
+    this.showButtonText('Сохранить');
+  }
+
   setEventListeners() {
     super.setEventListeners();
 
     this._popupForm.addEventListener('submit', () => {
+      console.log('tut rabotaet');
       event.preventDefault();
       this._handleSubmitForm(this._getInputValues());
-      this.close();
+      // this.close();
     });
   }
 
@@ -41,6 +49,10 @@ class PopupWithForm extends Popup {
     super.close();
     this._popupForm.reset();
     this._handleResetValidation(this._popupForm);
+  }
+
+  showButtonText(msg) {
+    this._saveButtonElement.textContent = msg;
   }
 }
 
