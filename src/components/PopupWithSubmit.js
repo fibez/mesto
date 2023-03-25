@@ -24,6 +24,9 @@ class PopupWithSubmit extends Popup {
 
     this._card = card;
     this._id = id;
+  }
+
+  showDefaultButtonText() {
     this.showButtonText(this._defaultButtonText);
   }
 

@@ -77,8 +77,10 @@ function submitCardAddition(inputValues) {
       popupAddCard.close();
     })
     .catch((error) => {
-      popupAddCard.showButtonText('Увы. Ошибка 🥲');
       console.log(error);
+    })
+    .finally(() => {
+      popupAddCard.showDefaultButtonText();
     });
 }
 
@@ -95,8 +97,10 @@ function submitProfileChanges(inputValues) {
       popupEditProfile.close();
     })
     .catch((error) => {
-      popupEditProfile.showButtonText('Увы. Ошибка 🥲');
       console.log(error);
+    })
+    .finally(() => {
+      popupEditProfile.showDefaultButtonText();
     });
 }
 
@@ -113,22 +117,26 @@ function submitEditAvatar(inputValues) {
       popupEditAvatar.close();
     })
     .catch((error) => {
-      popupEditAvatar.showButtonText('Увы. Ошибка 🥲');
       console.log(error);
+    })
+    .finally(() => {
+      popupEditAvatar.showDefaultButtonText();
     });
 }
 
 function submitRemoveCard(card, id) {
   popupRemoveCard.showButtonText('Удаление...');
   Promise.resolve(api.deleteCard(id))
-    .then((res) => {
+    .then(() => {
       popupRemoveCard.showButtonText('Удалено!');
       card.hideFromlayout();
       popupRemoveCard.close();
     })
     .catch((error) => {
-      popupRemoveCard.showButtonText('Ошибка 🥲');
       console.log(error);
+    })
+    .finally(() => {
+      popupRemoveCard.showDefaultButtonText();
     });
 }
 

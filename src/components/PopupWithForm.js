@@ -29,12 +29,6 @@ class PopupWithForm extends Popup {
     });
   }
 
-  open() {
-    super.open();
-
-    this.showButtonText(this._defaultButtonText);
-  }
-
   setEventListeners() {
     super.setEventListeners();
 
@@ -49,6 +43,10 @@ class PopupWithForm extends Popup {
 
     this._popupForm.reset();
     this._handleResetValidation(this._popupForm);
+  }
+
+  showDefaultButtonText() {
+    this.showButtonText(this._defaultButtonText);
   }
 
   showButtonText(msg) {
