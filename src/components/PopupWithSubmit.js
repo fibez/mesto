@@ -7,7 +7,6 @@ class PopupWithSubmit extends Popup {
     this._popupFormElement = this._popup.querySelector('.popup__form');
     this._saveButtonElement = this._popup.querySelector('.popup__save-button');
     this._handleRemoveCard = handleRemoveCard;
-    this._defaultButtonText = this._saveButtonElement.textContent;
   }
 
   setEventListeners() {
@@ -24,14 +23,6 @@ class PopupWithSubmit extends Popup {
 
     this._card = card;
     this._id = id;
-  }
-
-  showDefaultButtonText() {
-    this.showButtonText(this._defaultButtonText);
-  }
-
-  showButtonText(msg) {
-    this._saveButtonElement.textContent = msg;
   }
 }
 

@@ -72,7 +72,6 @@ function submitCardAddition(inputValues) {
   popupAddCard.showButtonText('Сохранение...');
   Promise.resolve(api.addNewCard(userCard))
     .then((res) => {
-      popupAddCard.showButtonText('Сохранено!');
       cardElement.addItem(createCard(res));
       popupAddCard.close();
     })
@@ -93,7 +92,6 @@ function submitProfileChanges(inputValues) {
   Promise.resolve(api.updateUserInfo(userData))
     .then((res) => {
       userInfo.setUserDescription(res);
-      popupEditProfile.showButtonText('Сохранено!');
       popupEditProfile.close();
     })
     .catch((error) => {
@@ -112,7 +110,6 @@ function submitEditAvatar(inputValues) {
   Promise.resolve(api.updateAvatar(userData.avatar))
     .then((res) => {
       userInfo.setUserAvatar(res);
-      popupEditAvatar.showButtonText('Сохранено!');
       api.getUserInfo();
       popupEditAvatar.close();
     })
@@ -125,18 +122,13 @@ function submitEditAvatar(inputValues) {
 }
 
 function submitRemoveCard(card, id) {
-  popupRemoveCard.showButtonText('Удаление...');
   Promise.resolve(api.deleteCard(id))
     .then(() => {
-      popupRemoveCard.showButtonText('Удалено!');
       card.hideFromlayout();
       popupRemoveCard.close();
     })
     .catch((error) => {
       console.log(error);
-    })
-    .finally(() => {
-      popupRemoveCard.showDefaultButtonText();
     });
 }
 
