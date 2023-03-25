@@ -10,6 +10,7 @@ class PopupWithForm extends Popup {
     this._popupForm = this._popup.querySelector('.popup__form');
     this._handleResetValidation = handleResetValidation;
     this._saveButtonElement = this._popup.querySelector('.popup__save-button');
+    this._defaultButtonText = this._saveButtonElement.textContent;
   }
 
   _getInputValues() {
@@ -31,22 +32,21 @@ class PopupWithForm extends Popup {
   open() {
     super.open();
 
-    this.showButtonText('Сохранить');
+    this.showButtonText(this._defaultButtonText);
   }
 
   setEventListeners() {
     super.setEventListeners();
 
     this._popupForm.addEventListener('submit', () => {
-      console.log('tut rabotaet');
       event.preventDefault();
       this._handleSubmitForm(this._getInputValues());
-      // this.close();
     });
   }
 
   close() {
     super.close();
+
     this._popupForm.reset();
     this._handleResetValidation(this._popupForm);
   }

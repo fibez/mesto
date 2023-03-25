@@ -99,7 +99,6 @@ class Card {
   }
 
   _removeCard() {
-    console.log(this._cardId);
     this._handleDeleteCard(this, this._cardId);
   }
 

@@ -17,7 +17,6 @@ class Api {
 
   _checkStatus(res) {
     if (res.ok) {
-      console.log(res.status);
       return res.json();
     }
 

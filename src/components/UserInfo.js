@@ -37,8 +37,3 @@ class UserInfo {
 }
 
 export { UserInfo };
-
-// jokerge
-// https://cdn.7tv.app/emote/6306876cbe8c19d70f9d6b22/4x.webp
-// 5head
-// https://cdn.betterttv.net/emote/5d6096974932b21d9c332904/3x.webp
